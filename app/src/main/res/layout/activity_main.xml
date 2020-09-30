@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#CB000000"
+        android:orientation="vertical">
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="37dp" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="214dp"
+            app:srcCompat="@drawable/aclogo" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayoutEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp">
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputEditText
+
+            android:id="@+id/textInputEditTextEmail"
+            android:layout_width="358dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:editable="true"
+            android:ems="10"
+            android:hint="Email"
+            android:inputType="textPersonName"
+            android:textColor="#000000"
+            android:textColorHint="#D8000000" />
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayoutPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp">
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/textInputEditTextPassword"
+            android:layout_width="359dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:ems="10"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:password="true"
+            android:textColor="#000000"
+            android:textColorHint="#D8000000"
+
+            >
+
+        </com.google.android.material.textfield.TextInputEditText>
+
+
+        <Button
+            android:id="@+id/appCompatButtonLogin"
+            style="@style/Widget.AppCompat.Button"
+            android:layout_width="191dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="#B5B50202"
+            android:hapticFeedbackEnabled="true"
+
+            android:onClick="onClick"
+            android:shadowColor="#75000000"
+            android:text="Login" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="37dp" />
+
+        <Button
+            android:id="@+id/textViewLinkRegister"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:onClick="onClickRegister"
+            android:text="Don't have an account? Register here." />
+
+
+    </LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
