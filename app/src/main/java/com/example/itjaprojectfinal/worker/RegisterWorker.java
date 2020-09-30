@@ -1,31 +1,25 @@
-package com.example.itjaprojectfinal;
+package com.example.itjaprojectfinal.worker;
 
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
-import androidx.appcompat.widget.Toolbar;
-import android.view.View;
 
+import com.example.itjaprojectfinal.DatabaseManager;
+import com.example.itjaprojectfinal.InputValidation;
+import com.example.itjaprojectfinal.R;
+import com.example.itjaprojectfinal.pojo.User;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.android.material.textfield.TextInputEditText;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
+
 import androidx.core.widget.NestedScrollView;
 
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
+
+public class RegisterWorker extends AppCompatActivity implements View.OnClickListener{
 
 
 
-
-public class Register extends AppCompatActivity implements View.OnClickListener{
-
-
-
-    private final AppCompatActivity activity = Register.this;
+    private final AppCompatActivity activity = RegisterWorker.this;
     private NestedScrollView nestedScrollView;
     private TextInputLayout textInputLayoutName;
     private TextInputLayout textInputLayoutEmail;
@@ -68,7 +62,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
         textInputEditTextEmail = (TextInputEditText) findViewById(R.id.textInputEditTextEmail);
         textInputEditTextMobile = (TextInputEditText) findViewById(R.id.textInputEditTextMobile);
         textInputEditTextGender = (TextInputEditText) findViewById(R.id.textInputEditTextGender);
-        textInputEditTextPassword = (TextInputEditText) findViewById(R.id.textInputEditTextPassword);
+        textInputEditTextPassword = (TextInputEditText) findViewById(R.id.textInputEditPassword);
         textInputEditTextConfirmPassword = (TextInputEditText) findViewById(R.id.textInputEditConfirmPassword);
 
     }
@@ -82,31 +76,36 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
 
 
     private void postDataToSQLite() {
-        if (!inputValidation.isInputEditTextFilled(textInputEditTextName, textInputLayoutName, "ERROR")) {
-            return;
+        try{
+            if (!inputValidation.isInputEditTextFilled(textInputEditTextName, textInputLayoutName, "ERROR")) {
+                return;
+            }
+
+            if (!inputValidation.isInputEditTextFilled(textInputEditTextSurname, textInputLayoutSurname, "ERROR")) {
+                return;
+            }
+
+            if (!inputValidation.isInputEditTextFilled(textInputEditTextEmail, textInputLayoutEmail, "ERROR")) {
+                return;
+            }
+            if (!inputValidation.isInputEditTextFilled(textInputEditTextMobile, textInputLayoutMobile, "ERROR")) {
+                return;
+            }
+            if (!inputValidation.isInputEditTextFilled(textInputEditTextGender, textInputLayoutGender, "ERROR")) {
+                return;
+            }
+
+            if (!inputValidation.isInputEditTextFilled(textInputEditTextPassword, textInputLayoutPassword, "ERRORPassword")) {
+                System.out.println("text is empty");
+            }
+            if (!inputValidation.isInputEditTextMatches(textInputEditTextPassword, textInputEditTextConfirmPassword,
+                    textInputLayoutConfirmPassword, "Passwords dont match")) {
+                return;
+            }
+        }catch(Exception e){
+            e.printStackTrace();
         }
 
-        if (!inputValidation.isInputEditTextFilled(textInputEditTextSurname, textInputLayoutSurname, "ERROR")) {
-            return;
-        }
-
-        if (!inputValidation.isInputEditTextFilled(textInputEditTextEmail, textInputLayoutEmail, "ERROR")) {
-            return;
-        }
-        if (!inputValidation.isInputEditTextFilled(textInputEditTextMobile, textInputLayoutMobile, "ERROR")) {
-            return;
-        }
-        if (!inputValidation.isInputEditTextFilled(textInputEditTextGender, textInputLayoutGender, "ERROR")) {
-            return;
-        }
-
-        if (!inputValidation.isInputEditTextFilled(textInputEditTextPassword, textInputLayoutPassword, "ERRORPassword")) {
-            return;
-        }
-        if (!inputValidation.isInputEditTextMatches(textInputEditTextPassword, textInputEditTextConfirmPassword,
-                textInputLayoutConfirmPassword, "Passwords dont match")) {
-            return;
-        }
         if (!databaseHelper.checkUser(textInputEditTextEmail.getText().toString().trim())) {
             user.setFirstName(textInputEditTextName.getText().toString().trim());
             user.setLastName(textInputEditTextSurname.getText().toString().trim());

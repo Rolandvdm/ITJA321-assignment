@@ -23,7 +23,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Register"></activity>
+        <activity android:name=".worker.RegisterWorker"></activity>
         <activity android:name=".Menu"></activity>
 
 

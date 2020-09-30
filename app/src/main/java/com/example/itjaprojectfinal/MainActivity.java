@@ -5,17 +5,14 @@ import android.os.Bundle;
 import android.view.View;
 
 
+import com.example.itjaprojectfinal.worker.RegisterWorker;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.android.material.textfield.TextInputEditText;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.core.widget.NestedScrollView;
 
-import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -89,7 +86,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public void onClickRegister(View v) {
 
-        Intent intentRegister = new Intent(getApplicationContext(), Register.class);
+        Intent intentRegister = new Intent(getApplicationContext(), RegisterWorker.class);
         startActivity(intentRegister);
     }
 

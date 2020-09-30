@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
-import com.example.itjaprojectfinal.User;
+import com.example.itjaprojectfinal.pojo.User;
 import java.util.ArrayList;
 import java.util.List;
 

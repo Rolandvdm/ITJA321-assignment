@@ -1,4 +1,4 @@
-package com.example.itjaprojectfinal;
+package com.example.itjaprojectfinal.pojo;
 
 public class User {
 
