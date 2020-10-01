@@ -27,17 +27,17 @@ public class DatabaseManager extends SQLiteOpenHelper {
     private static final String COLUMN_EMAIL = "user_email";
     private static final String COLUMN_PASSWORD = "user_password";
     private static final String COLUMN_MOBILE = "user_mobile";
-    private static final String COLUMN_GENDER = "user_Gender";
+    private static final String COLUMN_GENDER = "user_gender";
+    private static final String COLUMN_MAIN_ACCOUNT = "user_main_account";
+    private static final String COLUMN_SAVINGS_ACCOUNT = "user_savings_account";
     // create table sql query
     private String CREATE_USER_TABLE = "CREATE TABLE " + TABLE_USER + "("
             + COLUMN_USER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + COLUMN_FIRST + " TEXT,"
-            + COLUMN_LAST + " TEXT," + COLUMN_EMAIL + " TEXT," + COLUMN_PASSWORD + " TEXT," + COLUMN_MOBILE + " TEXT," + COLUMN_GENDER + " TEXT" +  ")";
+            + COLUMN_LAST + " TEXT," + COLUMN_EMAIL + " TEXT," + COLUMN_PASSWORD + " TEXT," + COLUMN_MOBILE + " TEXT," + COLUMN_GENDER + " TEXT," + COLUMN_MAIN_ACCOUNT + " INTEGER," + COLUMN_SAVINGS_ACCOUNT + " INTEGER" +  ")";
     // drop table sql query
     private String DROP_USER_TABLE = "DROP TABLE IF EXISTS " + TABLE_USER;
     /**
      * Constructor
-     *
-     * @param context
      */
     public DatabaseManager(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -58,29 +58,23 @@ public class DatabaseManager extends SQLiteOpenHelper {
         // Create tables again
         onCreate(db);
     }
-    /**
-     * This method is to create user record
-     *
-     * @param user
-     */
+
     public void addUser(User user) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(COLUMN_FIRST, user.getFirstName());
-        values.put(COLUMN_LAST, user.getEmail());
-        values.put(COLUMN_EMAIL, user.getPassword());
-        values.put(COLUMN_PASSWORD, user.getEmail());
-        values.put(COLUMN_MOBILE, user.getEmail());
-        values.put(COLUMN_GENDER, user.getEmail());
+        values.put(COLUMN_LAST, user.getLastName());
+        values.put(COLUMN_EMAIL, user.getEmail());
+        values.put(COLUMN_PASSWORD, user.getPassword());
+        values.put(COLUMN_MOBILE, user.getMobile());
+        values.put(COLUMN_GENDER, user.getGender());
+        values.put(COLUMN_MAIN_ACCOUNT, user.getMainAccount());
+        values.put(COLUMN_SAVINGS_ACCOUNT,user.getSavingsAccount());
         // Inserting Row
         db.insert(TABLE_USER, null, values);
         db.close();
     }
-    /**
-     * This method is to fetch all user and return the list of user records
-     *
-     * @return list
-     */
+
     public List<User> getAllUser() {
         // array of columns to fetch
         String[] columns = {
@@ -90,7 +84,10 @@ public class DatabaseManager extends SQLiteOpenHelper {
                 COLUMN_EMAIL,
                 COLUMN_PASSWORD,
                 COLUMN_MOBILE,
-                COLUMN_GENDER
+                COLUMN_GENDER,
+                COLUMN_MAIN_ACCOUNT,
+                COLUMN_SAVINGS_ACCOUNT
+
         };
         // sorting orders
         String sortOrder =
@@ -98,11 +95,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
         List<User> userList = new ArrayList<User>();
         SQLiteDatabase db = this.getReadableDatabase();
         // query the user table
-        /**
-         * Here query function is used to fetch records from user table this function works like we use sql query.
-         * SQL query equivalent to this query function is
-         * SELECT user_id,user_name,user_email,user_password FROM user ORDER BY user_name;
-         */
+
         Cursor cursor = db.query(TABLE_USER, //Table to query
                 columns,    //columns to return
                 null,        //columns for the WHERE clause
@@ -121,8 +114,11 @@ public class DatabaseManager extends SQLiteOpenHelper {
                 user.setPassword(cursor.getString(cursor.getColumnIndex(COLUMN_PASSWORD)));
                 user.setMobile(cursor.getString(cursor.getColumnIndex(COLUMN_MOBILE)));
                 user.setGender(cursor.getString(cursor.getColumnIndex(COLUMN_GENDER)));
+                user.setMainAccount(cursor.getInt(cursor.getColumnIndex(COLUMN_MAIN_ACCOUNT)));
+                user.setSavingsAccount(cursor.getInt(cursor.getColumnIndex(COLUMN_SAVINGS_ACCOUNT)));
                 // Adding user record to list
                 userList.add(user);
+
             } while (cursor.moveToNext());
         }
         cursor.close();
@@ -130,10 +126,33 @@ public class DatabaseManager extends SQLiteOpenHelper {
         // return user list
         return userList;
     }
+
+    public User getUser(String email){
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM user WHERE " + COLUMN_EMAIL + "=?", new String[]{email});
+        cursor.moveToFirst();
+
+        User user = new User();
+        user.setId(cursor.getInt(cursor.getColumnIndex(COLUMN_USER_ID)));
+        user.setFirstName(cursor.getString(cursor.getColumnIndex(COLUMN_FIRST)));
+        user.setLastName(cursor.getString(cursor.getColumnIndex(COLUMN_LAST)));
+        user.setEmail(cursor.getString(cursor.getColumnIndex(COLUMN_EMAIL)));
+        user.setMobile(cursor.getString(cursor.getColumnIndex(COLUMN_MOBILE)));
+        user.setGender(cursor.getString(cursor.getColumnIndex(COLUMN_GENDER)));
+        user.setMainAccount(cursor.getInt(cursor.getColumnIndex(COLUMN_MAIN_ACCOUNT)));
+        user.setSavingsAccount(cursor.getInt(cursor.getColumnIndex(COLUMN_SAVINGS_ACCOUNT)));
+
+        cursor.close();
+        db.close();
+
+        return user;
+    }
+
+
+
+
     /**
      * This method to update user record
-     *
-     * @param user
      */
     public void updateUser(User user) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -144,6 +163,8 @@ public class DatabaseManager extends SQLiteOpenHelper {
         values.put(COLUMN_PASSWORD, user.getPassword());
         values.put(COLUMN_MOBILE, user.getMobile());
         values.put(COLUMN_GENDER, user.getGender());
+        values.put(COLUMN_MAIN_ACCOUNT,user.getMainAccount());
+        values.put(COLUMN_SAVINGS_ACCOUNT,user.getSavingsAccount());
         // updating row
         db.update(TABLE_USER, values, COLUMN_USER_ID + " = ?",
                 new String[]{String.valueOf(user.getId())});
@@ -151,8 +172,6 @@ public class DatabaseManager extends SQLiteOpenHelper {
     }
     /**
      * This method is to delete user record
-     *
-     * @param user
      */
     public void deleteUser(User user) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -163,9 +182,6 @@ public class DatabaseManager extends SQLiteOpenHelper {
     }
     /**
      * This method to check user exist or not
-     *
-     * @param email
-     * @return true/false
      */
     public boolean checkUser(String email) {
         // array of columns to fetch
@@ -178,11 +194,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
         // selection argument
         String[] selectionArgs = {email};
         // query user table with condition
-        /**
-         * Here query function is used to fetch records from user table this function works like we use sql query.
-         * SQL query equivalent to this query function is
-         * SELECT user_id FROM user WHERE user_email = 'jack@androidtutorialshub.com';
-         */
+
         Cursor cursor = db.query(TABLE_USER, //Table to query
                 columns,                    //columns to return
                 selection,                  //columns for the WHERE clause

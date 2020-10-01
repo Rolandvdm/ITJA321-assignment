@@ -94,7 +94,6 @@ public class RegisterWorker extends AppCompatActivity implements View.OnClickLis
             if (!inputValidation.isInputEditTextFilled(textInputEditTextGender, textInputLayoutGender, "ERROR")) {
                 return;
             }
-
             if (!inputValidation.isInputEditTextFilled(textInputEditTextPassword, textInputLayoutPassword, "ERRORPassword")) {
                 System.out.println("text is empty");
             }
@@ -102,6 +101,8 @@ public class RegisterWorker extends AppCompatActivity implements View.OnClickLis
                     textInputLayoutConfirmPassword, "Passwords dont match")) {
                 return;
             }
+
+
         }catch(Exception e){
             e.printStackTrace();
         }
@@ -113,6 +114,8 @@ public class RegisterWorker extends AppCompatActivity implements View.OnClickLis
             user.setPassword(textInputEditTextPassword.getText().toString().trim());
             user.setMobile(textInputEditTextMobile.getText().toString().trim());
             user.setGender(textInputEditTextGender.getText().toString().trim());
+            user.setMainAccount(10000);
+            user.setSavingsAccount(5000);
             databaseHelper.addUser(user);
             // Snack Bar to show success message that record saved successfully
             Snackbar.make(nestedScrollView, "Success!", Snackbar.LENGTH_LONG).show();
@@ -138,6 +141,7 @@ public class RegisterWorker extends AppCompatActivity implements View.OnClickLis
 
     @Override
     public void onClick(View v) {
+
         postDataToSQLite();
     }
 }

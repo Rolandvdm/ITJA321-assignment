@@ -4,30 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     android:clickable="false"
     android:longClickable="false">
 
     <LinearLayout
         android:layout_width="409dp"
         android:layout_height="729dp"
-        android:background="#CC000000"
+        android:background="#CCFFFFFF"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#73050505"
-            android:minHeight="?attr/actionBarSize"
-            android:theme="?attr/actionBarTheme" />
-
         <Space
             android:layout_width="match_parent"
-            android:layout_height="24dp" />
+            android:layout_height="79dp" />
 
         <ImageView
             android:id="@+id/imageView2"
@@ -67,13 +60,14 @@
             android:orientation="vertical">
 
             <Button
-                android:id="@+id/btnRegister2"
+                android:id="@+id/btnAccountBalance"
                 style="@style/Widget.AppCompat.Button"
                 android:layout_width="315dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:background="#B5B50202"
                 android:hapticFeedbackEnabled="true"
+                android:onClick="onClick"
                 android:shadowColor="#75000000"
                 android:text="VIEW ACCOUNT BALANCE" />
 
@@ -82,13 +76,14 @@
                 android:layout_height="24dp" />
 
             <Button
-                android:id="@+id/btnRegister3"
+                android:id="@+id/btnTransfer"
                 style="@style/Widget.AppCompat.Button"
                 android:layout_width="315dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:background="#B5B50202"
                 android:hapticFeedbackEnabled="true"
+                android:onClick="onClickTransfer"
                 android:shadowColor="#75000000"
                 android:text="TRANSFER BETWEEN ACCOUNTS" />
 
@@ -97,7 +92,7 @@
                 android:layout_height="24dp" />
 
             <Button
-                android:id="@+id/btnRegister4"
+                android:id="@+id/btnLogout"
                 style="@style/Widget.AppCompat.Button"
                 android:layout_width="315dp"
                 android:layout_height="wrap_content"

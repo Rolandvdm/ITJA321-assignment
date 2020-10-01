@@ -25,6 +25,8 @@
         </activity>
         <activity android:name=".worker.RegisterWorker"></activity>
         <activity android:name=".Menu"></activity>
+        <activity android:name=".worker.ViewAccountActivity"></activity>
+        <activity android:name=".worker.TransferWorker"></activity>
 
 
     </application>

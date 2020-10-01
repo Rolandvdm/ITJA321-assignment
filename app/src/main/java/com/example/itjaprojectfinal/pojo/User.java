@@ -10,6 +10,24 @@ public class User {
     private String password;
     private String mobile;
     private String gender;
+    private int mainAccount;
+    private int savingsAccount;
+
+    public void setMainAccount(int mainAccount) {
+        this.mainAccount = mainAccount;
+    }
+
+    public void setSavingsAccount(int savingsAccount) {
+        this.savingsAccount = savingsAccount;
+    }
+
+    public int getMainAccount() {
+        return mainAccount;
+    }
+
+    public int getSavingsAccount() {
+        return savingsAccount;
+    }
 
     public String getFirstName() {
 
