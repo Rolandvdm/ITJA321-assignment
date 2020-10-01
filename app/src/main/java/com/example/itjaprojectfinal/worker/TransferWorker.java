@@ -2,7 +2,6 @@ package com.example.itjaprojectfinal.worker;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -18,12 +17,11 @@ import com.example.itjaprojectfinal.pojo.User;
 import com.google.android.material.textfield.TextInputEditText;
 
 
-public class TransferWorker extends AppCompatActivity {
+public class TransferWorker extends AppCompatActivity implements View.OnClickListener {
 
     private final AppCompatActivity activity = TransferWorker.this;
     private DatabaseManager databaseHelper;
     private User user;
-    private Button btnTransfer;
 
 
 
@@ -43,10 +41,11 @@ public class TransferWorker extends AppCompatActivity {
 
         TextView TextAccBalance = (TextView) findViewById(R.id.TextAccBalance2);
         TextView TextAccSavings = (TextView) findViewById(R.id.TextAccSavings2);
-        btnTransfer = findViewById(R.id.btnTrans);
 
         TextAccBalance.setText("Current Account Balance: R" + balance);
         TextAccSavings.setText("Savings Account Balance: R" + savings);
+
+
 
 
     }
@@ -71,8 +70,6 @@ public class TransferWorker extends AppCompatActivity {
 
         mainAccount = user.getMainAccount();
         savingsAccount = user.getSavingsAccount();
-
-        Toast.makeText(this, user.getPassword(), Toast.LENGTH_SHORT).show();
 
 
 
@@ -109,7 +106,8 @@ public class TransferWorker extends AppCompatActivity {
 
     }
 
-    public void onClickTrans(View v) {
+    @Override
+    public void onClick(View v) {
         TransferMoney();
 
     }

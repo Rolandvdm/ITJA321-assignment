@@ -143,7 +143,7 @@
                 android:layout_gravity="center"
                 android:background="#B5B50202"
                 android:hapticFeedbackEnabled="true"
-                android:onClick="onClickTrans"
+                android:onClick="onClick"
                 android:shadowColor="#75000000"
                 android:text="TRANSFER" />
         </LinearLayout>
