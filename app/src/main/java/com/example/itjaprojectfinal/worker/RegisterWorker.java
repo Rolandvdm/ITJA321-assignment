@@ -1,5 +1,6 @@
 package com.example.itjaprojectfinal.worker;
 
+import android.content.Intent;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
@@ -121,6 +122,8 @@ public class RegisterWorker extends AppCompatActivity implements View.OnClickLis
 
             Toast toast=Toast.makeText(getApplicationContext(),"Success!",Toast.LENGTH_SHORT);
             toast.show();
+            Intent intent = new Intent(activity, MainActivity.class);
+            startActivity(intent);
             emptyInputEditText();
         } else {
 
