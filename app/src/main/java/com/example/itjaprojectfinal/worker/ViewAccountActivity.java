@@ -1,10 +1,8 @@
 package com.example.itjaprojectfinal.worker;
 
-
 import android.os.Bundle;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.itjaprojectfinal.R;
 import com.example.itjaprojectfinal.pojo.DatabaseManager;
 import com.example.itjaprojectfinal.pojo.User;

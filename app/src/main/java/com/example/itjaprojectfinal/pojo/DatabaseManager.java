@@ -98,12 +98,12 @@ public class DatabaseManager extends SQLiteOpenHelper {
         // query the user table
 
         Cursor cursor = db.query(TABLE_USER, //Table to query
-                columns,    //columns to return
-                null,        //columns for the WHERE clause
-                null,        //The values for the WHERE clause
-                null,       //group the rows
-                null,       //filter by row groups
-                sortOrder); //The sort order
+                columns,
+                null,
+                null,
+                null,
+                null,
+                sortOrder);
         // Traversing through all rows and adding to list
         if (cursor.moveToFirst()) {
             do {
@@ -197,13 +197,13 @@ public class DatabaseManager extends SQLiteOpenHelper {
         String[] selectionArgs = {email};
         // query user table with condition
 
-        Cursor cursor = db.query(TABLE_USER, //Table to query
-                columns,                    //columns to return
-                selection,                  //columns for the WHERE clause
-                selectionArgs,              //The values for the WHERE clause
-                null,                       //group the rows
-                null,                      //filter by row groups
-                null);                      //The sort order
+        Cursor cursor = db.query(TABLE_USER,
+                columns,
+                selection,
+                selectionArgs,
+                null,
+                null,
+                null);
         int cursorCount = cursor.getCount();
         cursor.close();
         db.close();
@@ -225,13 +225,13 @@ public class DatabaseManager extends SQLiteOpenHelper {
         // selection arguments
         String[] selectionArgs = {email, password};
         // query user table with conditions
-        Cursor cursor = db.query(TABLE_USER, //Table to query
-                columns,                    //columns to return
-                selection,                  //columns for the WHERE clause
-                selectionArgs,              //The values for the WHERE clause
-                null,                       //group the rows
-                null,                       //filter by row groups
-                null);                      //The sort order
+        Cursor cursor = db.query(TABLE_USER,
+                columns,
+                selection,
+                selectionArgs,
+                null,
+                null,
+                null);
         int cursorCount = cursor.getCount();
         cursor.close();
         db.close();
