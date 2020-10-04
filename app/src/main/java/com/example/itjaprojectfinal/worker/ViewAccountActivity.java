@@ -1,16 +1,12 @@
 package com.example.itjaprojectfinal.worker;
 
-import android.content.Intent;
+
 import android.os.Bundle;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.itjaprojectfinal.DatabaseManager;
-import com.example.itjaprojectfinal.InputValidation;
-import com.example.itjaprojectfinal.MainActivity;
 import com.example.itjaprojectfinal.R;
+import com.example.itjaprojectfinal.pojo.DatabaseManager;
 import com.example.itjaprojectfinal.pojo.User;
 
 public class ViewAccountActivity extends AppCompatActivity {

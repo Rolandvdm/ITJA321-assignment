@@ -1,4 +1,4 @@
-package com.example.itjaprojectfinal;
+package com.example.itjaprojectfinal.pojo;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -30,6 +30,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
     private static final String COLUMN_GENDER = "user_gender";
     private static final String COLUMN_MAIN_ACCOUNT = "user_main_account";
     private static final String COLUMN_SAVINGS_ACCOUNT = "user_savings_account";
+
     // create table sql query
     private String CREATE_USER_TABLE = "CREATE TABLE " + TABLE_USER + "("
             + COLUMN_USER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + COLUMN_FIRST + " TEXT,"
@@ -211,13 +212,8 @@ public class DatabaseManager extends SQLiteOpenHelper {
         }
         return false;
     }
-    /**
-     * This method to check user exist or not
-     *
-     * @param email
-     * @param password
-     * @return true/false
-     */
+
+
     public boolean checkUser(String email, String password) {
         // array of columns to fetch
         String[] columns = {
@@ -229,11 +225,6 @@ public class DatabaseManager extends SQLiteOpenHelper {
         // selection arguments
         String[] selectionArgs = {email, password};
         // query user table with conditions
-        /**
-         * Here query function is used to fetch records from user table this function works like we use sql query.
-         * SQL query equivalent to this query function is
-         * SELECT user_id FROM user WHERE user_email = 'jack@androidtutorialshub.com' AND user_password = 'qwerty';
-         */
         Cursor cursor = db.query(TABLE_USER, //Table to query
                 columns,                    //columns to return
                 selection,                  //columns for the WHERE clause

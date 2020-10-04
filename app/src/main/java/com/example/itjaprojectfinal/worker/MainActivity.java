@@ -1,18 +1,16 @@
-package com.example.itjaprojectfinal;
+package com.example.itjaprojectfinal.worker;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
 
-import com.example.itjaprojectfinal.worker.RegisterWorker;
-import com.google.android.material.snackbar.Snackbar;
+import com.example.itjaprojectfinal.R;
+import com.example.itjaprojectfinal.pojo.DatabaseManager;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.android.material.textfield.TextInputEditText;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.widget.NestedScrollView;
 
-import android.widget.Button;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -38,11 +36,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      */
     private void initViews() {
 
-
-
         textInputLayoutEmail = (TextInputLayout) findViewById(R.id.textInputLayoutEmail);
         textInputLayoutPassword = (TextInputLayout) findViewById(R.id.textInputLayoutPassword);
-
         textInputEditTextEmail = (TextInputEditText) findViewById(R.id.textInputEditTextEmail);
         textInputEditTextPassword = (TextInputEditText) findViewById(R.id.textInputEditTextPassword);
     }
@@ -74,9 +69,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         if (!inputValidation.isInputEditTextEmail(textInputEditTextEmail, textInputLayoutEmail, "Not a valid email")) {
             System.out.println(textInputEditTextEmail + "" + textInputLayoutEmail);
+            Toast toast=Toast.makeText(getApplicationContext(),"Email is invalid!",Toast.LENGTH_SHORT);
+            toast.show();
             return;
         }
         if (!inputValidation.isInputEditTextFilled(textInputEditTextPassword, textInputLayoutPassword, "password is invalid")) {
+            Toast toast=Toast.makeText(getApplicationContext(),"Password is invalid",Toast.LENGTH_SHORT);
+            toast.show();
             return;
         }
 
@@ -105,6 +104,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         textInputEditTextEmail.setText(null);
         textInputEditTextPassword.setText(null);
     }
+
+
 
     @Override
     public void onClick(View v) {

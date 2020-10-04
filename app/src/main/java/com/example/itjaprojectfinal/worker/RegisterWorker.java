@@ -5,15 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Toast;
 
-import com.example.itjaprojectfinal.DatabaseManager;
-import com.example.itjaprojectfinal.InputValidation;
 import com.example.itjaprojectfinal.R;
+import com.example.itjaprojectfinal.pojo.DatabaseManager;
 import com.example.itjaprojectfinal.pojo.User;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.android.material.textfield.TextInputEditText;
 
-import androidx.core.widget.NestedScrollView;
 
 
 public class RegisterWorker extends AppCompatActivity implements View.OnClickListener{
@@ -21,7 +18,6 @@ public class RegisterWorker extends AppCompatActivity implements View.OnClickLis
 
 
     private final AppCompatActivity activity = RegisterWorker.this;
-    private NestedScrollView nestedScrollView;
     private TextInputLayout textInputLayoutName;
     private TextInputLayout textInputLayoutEmail;
     private TextInputLayout textInputLayoutSurname;
@@ -87,6 +83,8 @@ public class RegisterWorker extends AppCompatActivity implements View.OnClickLis
             }
 
             if (!inputValidation.isInputEditTextFilled(textInputEditTextEmail, textInputLayoutEmail, "ERROR")) {
+                Toast toast=Toast.makeText(getApplicationContext(),"Email is invalid",Toast.LENGTH_SHORT);
+                toast.show();
                 return;
             }
             if (!inputValidation.isInputEditTextFilled(textInputEditTextMobile, textInputLayoutMobile, "ERROR")) {
@@ -96,6 +94,8 @@ public class RegisterWorker extends AppCompatActivity implements View.OnClickLis
                 return;
             }
             if (!inputValidation.isInputEditTextFilled(textInputEditTextPassword, textInputLayoutPassword, "ERRORPassword")) {
+                Toast toast=Toast.makeText(getApplicationContext(),"Password is invalid",Toast.LENGTH_SHORT);
+                toast.show();
                 System.out.println("text is empty");
             }
             if (!inputValidation.isInputEditTextMatches(textInputEditTextPassword, textInputEditTextConfirmPassword,
@@ -118,11 +118,12 @@ public class RegisterWorker extends AppCompatActivity implements View.OnClickLis
             user.setMainAccount(10000);
             user.setSavingsAccount(5000);
             databaseHelper.addUser(user);
-            // Snack Bar to show success message that record saved successfully
-            Snackbar.make(nestedScrollView, "Success!", Snackbar.LENGTH_LONG).show();
+
+            Toast toast=Toast.makeText(getApplicationContext(),"Success!",Toast.LENGTH_SHORT);
+            toast.show();
             emptyInputEditText();
         } else {
-            // Snack Bar to show error message that record already exists
+
             Toast toast=Toast.makeText(getApplicationContext(),"Email is already used",Toast.LENGTH_SHORT);
             toast.show();
         }
@@ -136,10 +137,6 @@ public class RegisterWorker extends AppCompatActivity implements View.OnClickLis
         textInputEditTextPassword.setText(null);
         textInputEditTextConfirmPassword.setText(null);
     }
-
-
-
-
 
     @Override
     public void onClick(View v) {

@@ -7,8 +7,9 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
-import com.example.itjaprojectfinal.DatabaseManager;
+
 import com.example.itjaprojectfinal.R;
+import com.example.itjaprojectfinal.pojo.DatabaseManager;
 import com.example.itjaprojectfinal.pojo.User;
 
 
@@ -40,9 +41,6 @@ public class TransferWorker extends AppCompatActivity implements View.OnClickLis
 
         TextAccBalance.setText("Current Account Balance: R" + balance);
         TextAccSavings.setText("Savings Account Balance: R" + savings);
-
-
-
 
     }
 
