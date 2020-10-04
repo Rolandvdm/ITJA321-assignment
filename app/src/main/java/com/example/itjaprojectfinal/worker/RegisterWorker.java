@@ -3,6 +3,7 @@ package com.example.itjaprojectfinal.worker;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.itjaprojectfinal.DatabaseManager;
 import com.example.itjaprojectfinal.InputValidation;
@@ -98,7 +99,7 @@ public class RegisterWorker extends AppCompatActivity implements View.OnClickLis
                 System.out.println("text is empty");
             }
             if (!inputValidation.isInputEditTextMatches(textInputEditTextPassword, textInputEditTextConfirmPassword,
-                    textInputLayoutConfirmPassword, "Passwords dont match")) {
+                    textInputLayoutConfirmPassword, "Passwords don't match")) {
                 return;
             }
 
@@ -122,7 +123,8 @@ public class RegisterWorker extends AppCompatActivity implements View.OnClickLis
             emptyInputEditText();
         } else {
             // Snack Bar to show error message that record already exists
-            Snackbar.make(nestedScrollView, "Email is already used", Snackbar.LENGTH_LONG).show();
+            Toast toast=Toast.makeText(getApplicationContext(),"Email is already used",Toast.LENGTH_SHORT);
+            toast.show();
         }
     }
     private void emptyInputEditText() {

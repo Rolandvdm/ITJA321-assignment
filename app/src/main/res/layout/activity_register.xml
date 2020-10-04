@@ -124,7 +124,6 @@
             android:ems="10"
             android:hint="Password"
             android:inputType="textPersonName"
-            android:text="a"
             android:textColor="#000000"
             android:textColorHint="#D8000000" />
 

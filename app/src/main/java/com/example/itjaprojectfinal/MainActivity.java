@@ -47,9 +47,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         textInputEditTextPassword = (TextInputEditText) findViewById(R.id.textInputEditTextPassword);
     }
 
-    /**
-     * This method is to initialize listeners
-     */
 
 
     /**
@@ -59,17 +56,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         databaseHelper = new DatabaseManager(activity);
         inputValidation = new InputValidation(activity);
 
-    }
-
-    /**
-     * This implemented method is to listen the click on view
-     *
-     * @param v
-     */
-
-    public void onClickLogin(View v) {
-
-        verifyFromSQLite();
     }
 
 
@@ -106,7 +92,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
         } else {
-            // Toast message to show success message that record is wrong
+            // Toast message to show message that record is wrong
             Toast toast=Toast.makeText(getApplicationContext(),"Error logging you in",Toast.LENGTH_SHORT);
             toast.show();
         }

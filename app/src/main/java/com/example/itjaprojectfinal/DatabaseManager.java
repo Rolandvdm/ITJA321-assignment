@@ -137,6 +137,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
         user.setFirstName(cursor.getString(cursor.getColumnIndex(COLUMN_FIRST)));
         user.setLastName(cursor.getString(cursor.getColumnIndex(COLUMN_LAST)));
         user.setEmail(cursor.getString(cursor.getColumnIndex(COLUMN_EMAIL)));
+        user.setPassword(cursor.getString(cursor.getColumnIndex(COLUMN_PASSWORD)));
         user.setMobile(cursor.getString(cursor.getColumnIndex(COLUMN_MOBILE)));
         user.setGender(cursor.getString(cursor.getColumnIndex(COLUMN_GENDER)));
         user.setMainAccount(cursor.getInt(cursor.getColumnIndex(COLUMN_MAIN_ACCOUNT)));

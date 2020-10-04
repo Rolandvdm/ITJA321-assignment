@@ -6,15 +6,11 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.itjaprojectfinal.DatabaseManager;
-import com.example.itjaprojectfinal.InputValidation;
-import com.example.itjaprojectfinal.MainActivity;
 import com.example.itjaprojectfinal.R;
 import com.example.itjaprojectfinal.pojo.User;
-import com.google.android.material.textfield.TextInputEditText;
+
 
 
 public class TransferWorker extends AppCompatActivity implements View.OnClickListener {
